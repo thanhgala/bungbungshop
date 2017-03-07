@@ -11,7 +11,7 @@ namespace BungBungShop.Data
             this.Configuration.LazyLoadingEnabled = false;
         }
 
-        public DbSet<Footer> Footers {set;get;}
+        public DbSet<Footer> Footers { set; get; }
         public DbSet<Menu> Menus { set; get; }
         public DbSet<MenuGroup> MenuGroups { set; get; }
         public DbSet<Order> Orders { set; get; }
@@ -34,7 +34,6 @@ namespace BungBungShop.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            
         }
     }
 }

@@ -3,13 +3,13 @@ using BungBungShop.Model.Models;
 
 namespace BungBungShop.Data.Repositories
 {
-    public interface IProductRepository
+    public interface IProductTagRepository
     {
     }
 
-    public class ProductRepository : RepositoryBase<Product>, IProductRepository
+    public class ProductTagRepository : RepositoryBase<Product>, IProductTagRepository
     {
-        public ProductRepository(IDbFactory dbFactory)
+        public ProductTagRepository(IDbFactory dbFactory)
             : base(dbFactory)
         {
         }
