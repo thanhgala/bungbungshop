@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 
 namespace BungBungShop.Data.Infrastructure
 {
-    public abstract class RepositoryBase<T> where T : class
+    public abstract class RepositoryBase<T> : Repository<T> where T : class
     {
         #region Properties
 
@@ -137,6 +137,16 @@ namespace BungBungShop.Data.Infrastructure
         public bool CheckContains(Expression<Func<T, bool>> predicate)
         {
             return dataContext.Set<T>().Count<T>(predicate) > 0;
+        }
+
+        public T GetSingleByID(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public T GetSingByCondition(Expression<Func<T, bool>> expression, string[] includes = null)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion Implementation

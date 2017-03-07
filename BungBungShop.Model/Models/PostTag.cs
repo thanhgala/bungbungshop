@@ -11,7 +11,7 @@ namespace BungBungShop.Model.Models
         public int PostID { set; get; }
 
         [Key]
-        [Column(TypeName = "varchar")]
+        [Column(TypeName = "varchar",Order =2)]
         [MaxLength(50)]
         public string TagID { set; get; }
 

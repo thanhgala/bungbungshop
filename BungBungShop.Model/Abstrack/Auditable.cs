@@ -10,7 +10,6 @@ namespace BungBungShop.Model.Abstrack
         [MaxLength(256)]
         public string CreatedBy { set; get; }
 
-        [MaxLength(256)]
         public DateTime? UpdatedDate { set; get; }
 
         [MaxLength(256)]
