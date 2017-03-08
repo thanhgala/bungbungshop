@@ -3,7 +3,7 @@ using BungBungShop.Model.Models;
 
 namespace BungBungShop.Data.Repositories
 {
-    public interface IProductRepository
+    public interface IProductRepository : IRepository<Product>
     {
     }
 

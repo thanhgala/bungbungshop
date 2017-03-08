@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using BungBungShop.Model.Abstrack;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BungBungShop.Model.Models
 {
     [Table("PostCategories")]
-    public class PostCategory
+    public class PostCategory : Auditable
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

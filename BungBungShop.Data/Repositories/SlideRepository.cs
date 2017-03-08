@@ -3,11 +3,11 @@ using BungBungShop.Model.Models;
 
 namespace BungBungShop.Data.Repositories
 {
-    public interface ISlideTagRepository
+    public interface ISlideTagRepository : IRepository<Slide>
     {
     }
 
-    public class SlideTagRepository : RepositoryBase<Product>, ISlideTagRepository
+    public class SlideTagRepository : RepositoryBase<Slide>, ISlideTagRepository
     {
         public SlideTagRepository(IDbFactory dbFactory)
             : base(dbFactory)

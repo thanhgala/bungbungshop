@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 
 namespace BungBungShop.Data.Infrastructure
 {
-    public abstract class RepositoryBase<T> : Repository<T> where T : class
+    public abstract class RepositoryBase<T> : IRepository<T> where T : class
     {
         #region Properties
 
@@ -24,7 +24,7 @@ namespace BungBungShop.Data.Infrastructure
             get { return dataContext ?? (dataContext = DbFactory.Init()); }
         }
 
-        #endregion Properties
+        #endregion
 
         protected RepositoryBase(IDbFactory dbFactory)
         {
@@ -149,6 +149,6 @@ namespace BungBungShop.Data.Infrastructure
             throw new NotImplementedException();
         }
 
-        #endregion Implementation
+        #endregion
     }
 }
