@@ -9,7 +9,7 @@ namespace BungBungShop.Service
 {
     public interface IPostCategoryService
     {
-        void Add(PostCategory postCategory);
+        PostCategory Add(PostCategory postCategory);
 
         void Update(PostCategory postCategory);
 
@@ -20,6 +20,8 @@ namespace BungBungShop.Service
         IEnumerable<PostCategory> GetAllByParentID(int parentID);
 
         PostCategory GetByID(int id);
+
+        void Save();
     }
 
     public class PostCategoryService : IPostCategoryService
@@ -32,9 +34,9 @@ namespace BungBungShop.Service
             this._postCategoryRepository = postCategoryRepository;
             this._unitOfWork = unitOfWork;
         }
-        public void Add(PostCategory postCategory)
+        public PostCategory Add(PostCategory postCategory)
         {
-            _postCategoryRepository.Add(postCategory);
+            return _postCategoryRepository.Add(postCategory);
         }
 
         public void Delete(int id)
@@ -55,6 +57,11 @@ namespace BungBungShop.Service
         public PostCategory GetByID(int id)
         {
             return _postCategoryRepository.GetSingleByID(id);
+        }
+
+        public void Save()
+        {
+            _unitOfWork.Comit();
         }
 
         public void Update(PostCategory postCategory)

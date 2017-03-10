@@ -27,7 +27,7 @@ namespace BungBungShop.Data.Repositories
                         select p;
 
             totalRow = query.Count();
-            query = query.Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            query = query.Skip ((pageIndex - 1) * pageSize).Take(pageSize);
             return query;
         }
     }
