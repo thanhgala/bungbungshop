@@ -13,7 +13,8 @@ namespace BungBungShop.Data.Infrastructure
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         private void Dispose(bool disposing)

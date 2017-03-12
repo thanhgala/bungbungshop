@@ -1,10 +1,13 @@
-﻿using BungBungShop.Model.Models;
+﻿using AutoMapper;
+using BungBungShop.Model.Models;
 using BungBungShop.Service;
 using BungBungShop.Web.Infastructure.Core;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-
+using BungBungShop.Web.Models;
+using BungBungShop.Web.Infastructure.Extensions;
 namespace BungBungShop.Web.Api
 {
     [RoutePrefix("api/postcategory")]
@@ -22,22 +25,17 @@ namespace BungBungShop.Web.Api
         {
             return CreateHttpRespond(request, () =>
             {
-                HttpResponseMessage response = null;
-                if (ModelState.IsValid)
-                {
-                    request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
-                }
-                else
-                {
-                    var listCategory = _postCategoryService.GetAll();
+                var listCategory = _postCategoryService.GetAll();
+                //Map giá trị từ model wa viewModel
+                var listPostCategoryVM = Mapper.Map <List<PostCategoryViewModel>>(listCategory);
+                HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK,listPostCategoryVM);
 
-                    response = request.CreateResponse(HttpStatusCode.OK);
-                }
                 return response;
             });
         }
 
-        public HttpResponseMessage Post(HttpRequestMessage request, PostCategory postCategory)
+        [Route("add")]
+        public HttpResponseMessage Post(HttpRequestMessage request, PostCategoryViewModel postCategoryVM)
         {
             return CreateHttpRespond(request, () =>
             {
@@ -48,7 +46,10 @@ namespace BungBungShop.Web.Api
                 }
                 else
                 {
-                    var category = _postCategoryService.Add(postCategory);
+                    PostCategory newPostCategory = new PostCategory();
+                    newPostCategory.UpdatePostCategory(postCategoryVM);
+
+                    var category = _postCategoryService.Add(newPostCategory);
                     _postCategoryService.Save();
 
                     response = request.CreateResponse(HttpStatusCode.Created, category);
@@ -57,7 +58,8 @@ namespace BungBungShop.Web.Api
             });
         }
 
-        public HttpResponseMessage Put(HttpRequestMessage request, PostCategory postCategory)
+        [Route("update")]
+        public HttpResponseMessage Put(HttpRequestMessage request, PostCategoryViewModel postCategoryVM)
         {
             return CreateHttpRespond(request, () =>
             {
@@ -68,7 +70,9 @@ namespace BungBungShop.Web.Api
                 }
                 else
                 {
-                    var category = _postCategoryService.Add(postCategory);
+                    var postCategoryDb = _postCategoryService.GetByID(postCategoryVM.ID);
+                    postCategoryDb.UpdatePostCategory(postCategoryVM);
+                    _postCategoryService.Update(postCategoryDb);
                     _postCategoryService.Save();
 
                     response = request.CreateResponse(HttpStatusCode.OK);
