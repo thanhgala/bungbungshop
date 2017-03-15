@@ -30,7 +30,7 @@ namespace BungBungShop.Web.Infastructure.Extensions
 
         }
 
-        public static void UpdatePostCategory(this Post post, PostViewModel postVM)
+        public static void UpdatePost(this Post post, PostViewModel postVM)
         {
             post.ID = postVM.ID;
             post.Name = postVM.Name;

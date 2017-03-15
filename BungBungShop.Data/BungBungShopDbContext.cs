@@ -1,9 +1,10 @@
 ﻿using BungBungShop.Model.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
 
 namespace BungBungShop.Data
 {
-    public class BungBungShopDbContext : DbContext
+    public class BungBungShopDbContext : IdentityDbContext<ApplicationUser>
     {
         public BungBungShopDbContext() : base("BungBungShopConnection")
         {
@@ -33,8 +34,16 @@ namespace BungBungShop.Data
         public DbSet<VisitorStatistic> VisitorStatistics { set; get; }
 
         public DbSet<Error> Errors { set; get; }
+
+
+        public static BungBungShopDbContext Create()
+        {
+            return new BungBungShopDbContext();
+        }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<IdentityUserRole>().HasKey(i => new { i.UserId, i.RoleId });
+            modelBuilder.Entity<IdentityUserLogin>().HasKey(i => i.UserId);
         }
     }
 }
