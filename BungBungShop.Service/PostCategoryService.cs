@@ -1,9 +1,7 @@
-﻿using BungBungShop.Model.Models;
-using System.Collections.Generic;
-using System;
+﻿using BungBungShop.Data.Infrastructure;
 using BungBungShop.Data.Repositories;
-using BungBungShop.Data.Infrastructure;
-using System.Linq;
+using BungBungShop.Model.Models;
+using System.Collections.Generic;
 
 namespace BungBungShop.Service
 {
@@ -13,7 +11,7 @@ namespace BungBungShop.Service
 
         void Update(PostCategory postCategory);
 
-        void Delete(int id);
+        PostCategory Delete(int id);
 
         IEnumerable<PostCategory> GetAll();
 
@@ -26,22 +24,23 @@ namespace BungBungShop.Service
 
     public class PostCategoryService : IPostCategoryService
     {
-        IPostCategoryRepository _postCategoryRepository;
-        IUnitOfWork _unitOfWork;
+        private IPostCategoryRepository _postCategoryRepository;
+        private IUnitOfWork _unitOfWork;
 
-        public PostCategoryService(IPostCategoryRepository postCategoryRepository,IUnitOfWork unitOfWork)
+        public PostCategoryService(IPostCategoryRepository postCategoryRepository, IUnitOfWork unitOfWork)
         {
             this._postCategoryRepository = postCategoryRepository;
             this._unitOfWork = unitOfWork;
         }
+
         public PostCategory Add(PostCategory postCategory)
         {
             return _postCategoryRepository.Add(postCategory);
         }
 
-        public void Delete(int id)
+        public PostCategory Delete(int id)
         {
-            _postCategoryRepository.Delete(id);
+            return _postCategoryRepository.Delete(id);
         }
 
         public IEnumerable<PostCategory> GetAll()
@@ -56,7 +55,7 @@ namespace BungBungShop.Service
 
         public PostCategory GetByID(int id)
         {
-            return _postCategoryRepository.GetSingleByID(id);
+            return _postCategoryRepository.GetSingleById(id);
         }
 
         public void Save()

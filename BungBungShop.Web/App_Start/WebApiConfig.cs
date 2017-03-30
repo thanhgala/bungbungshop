@@ -13,6 +13,8 @@ namespace BungBungShop.Web
 
             // Web API routes
             config.MapHttpAttributeRoutes();
+            //var json = config.Formatters.JsonFormatter;
+            //json.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.Objects;
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

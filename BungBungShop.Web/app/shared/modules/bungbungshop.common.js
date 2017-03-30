@@ -1,3 +1,3 @@
 ﻿(function () {
-    angular.module('bungbungshop.common', ['ui.router'])
+    angular.module('bungbungshop.common', ['ui.router','ngBootbox','ngCkeditor'])
 })();

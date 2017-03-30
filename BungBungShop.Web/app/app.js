@@ -1,7 +1,10 @@
 ﻿/// <reference path="D:\ASPNET\MyProject\BungBungShop\BungBungShop.Web\Assets/admin/libs/angular/angular.js" />
 
 (function () {
-    angular.module('bungbungshop', ['bungbungshop.products', 'bungbungshop.common']).config(config);
+    angular.module('bungbungshop',
+        ['bungbungshop.products',
+         'bungbungshop.product_categories',
+         'bungbungshop.common']).config(config);
 
     config.$inject = ['$stateProvider', '$urlRouterProvider'];
 

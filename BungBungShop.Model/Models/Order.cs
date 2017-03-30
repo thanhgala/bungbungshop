@@ -28,7 +28,7 @@ namespace BungBungShop.Model.Models
         public string CustomerEmail { set; get; }
 
         [Required]
-        [MaxLength(256)]
+        [MaxLength(50)]
         public string CustomerMobile { set; get; }
 
         [Required]

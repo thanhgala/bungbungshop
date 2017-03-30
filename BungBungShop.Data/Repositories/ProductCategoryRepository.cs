@@ -12,14 +12,15 @@ namespace BungBungShop.Data.Repositories
 
     public class ProductCategoryRepository : RepositoryBase<ProductCategory>, IProductCategoryRepository
     {
-        public ProductCategoryRepository(DbFactory dbFactory)
+        public ProductCategoryRepository(IDbFactory dbFactory)
             : base(dbFactory)
         {
         }
 
         public IEnumerable<ProductCategory> GetByAlias(string alias)
         {
-            return this.DbContext.ProductCategories.Where(n => n.Alias == alias);
+            return this.DbContext.ProductCategories.Where(x => x.Alias == alias);
         }
     }
+
 }

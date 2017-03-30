@@ -6,6 +6,7 @@ using BungBungShop.Data.Infrastructure;
 using BungBungShop.Data.Repositories;
 using BungBungShop.Model.Models;
 using BungBungShop.Service;
+using BungBungShop.Web.Api;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.DataProtection;
@@ -33,7 +34,8 @@ namespace BungBungShop.Web.App_Start
             //cấu hình trong MVC
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
             //cấu hình cho web api
-            builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
+            //builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
+            builder.RegisterApiControllers(typeof(PostController).Assembly);
 
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerRequest();
             builder.RegisterType<DbFactory>().As<IDbFactory>().InstancePerRequest();
@@ -48,12 +50,12 @@ namespace BungBungShop.Web.App_Start
             builder.Register(c => app.GetDataProtectionProvider()).InstancePerRequest();
 
             // Repositories
-            builder.RegisterAssemblyTypes(typeof(PostCategoryRepository).Assembly)
+            builder.RegisterAssemblyTypes(typeof(PostRepository).Assembly)
                 .Where(t => t.Name.EndsWith("Repository"))
                 .AsImplementedInterfaces().InstancePerRequest();
 
             // Services
-            builder.RegisterAssemblyTypes(typeof(PostCategoryService).Assembly)
+            builder.RegisterAssemblyTypes(typeof(PostService).Assembly)
                .Where(t => t.Name.EndsWith("Service"))
                .AsImplementedInterfaces().InstancePerRequest();
 

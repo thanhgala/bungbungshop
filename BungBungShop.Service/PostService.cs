@@ -8,11 +8,11 @@ namespace BungBungShop.Service
 {
     public interface IPostService
     {
-        void Add(Post post);
+        Post Add(Post post);
 
         void Update(Post post);
 
-        void Delete(int id);
+        Post Delete(int id);
 
         IEnumerable<Post> GetAll();
 
@@ -38,19 +38,19 @@ namespace BungBungShop.Service
             this._unitOfWork = unitOfWork;
         }
 
-        public void Add(Post post)
+        public Post Add(Post post)
         {
-            _postRepository.Add(post);
+            return _postRepository.Add(post);
         }
 
-        public void Delete(int id)
+        public Post Delete(int id)
         {
-            _postRepository.Delete(id);
+            return _postRepository.Delete(id);
         }
 
         public IEnumerable<Post> GetAll()
         {
-            return _postRepository.GetAll(new string[] { "PostCategory" });
+            return _postRepository.GetAll(new string[] { "PostCategory"});
         }
 
         public IEnumerable<Post> GetAllByCategoryPaging(int categoryID, int page, int pageSize, out int totalRow)
@@ -71,7 +71,7 @@ namespace BungBungShop.Service
 
         public Post GetByID(int id)
         {
-            return _postRepository.GetSingleByID(id);
+            return _postRepository.GetSingleById(id);
         }
 
         public void SaveChanges()

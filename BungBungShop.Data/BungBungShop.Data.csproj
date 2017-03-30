@@ -82,6 +82,18 @@
     <Compile Include="Migrations\201703151824244_ChangeKey.Designer.cs">
       <DependentUpon>201703151824244_ChangeKey.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703191633162_updateProductTable.cs" />
+    <Compile Include="Migrations\201703191633162_updateProductTable.Designer.cs">
+      <DependentUpon>201703191633162_updateProductTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703191702221_updateForeignKeyForOrderDetail.cs" />
+    <Compile Include="Migrations\201703191702221_updateForeignKeyForOrderDetail.Designer.cs">
+      <DependentUpon>201703191702221_updateForeignKeyForOrderDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703300753398_UpdateTagColumnInProduct.cs" />
+    <Compile Include="Migrations\201703300753398_UpdateTagColumnInProduct.Designer.cs">
+      <DependentUpon>201703300753398_UpdateTagColumnInProduct.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ErrorRepository.cs" />
@@ -125,6 +137,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703151824244_ChangeKey.resx">
       <DependentUpon>201703151824244_ChangeKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703191633162_updateProductTable.resx">
+      <DependentUpon>201703191633162_updateProductTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703191702221_updateForeignKeyForOrderDetail.resx">
+      <DependentUpon>201703191702221_updateForeignKeyForOrderDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703300753398_UpdateTagColumnInProduct.resx">
+      <DependentUpon>201703300753398_UpdateTagColumnInProduct.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

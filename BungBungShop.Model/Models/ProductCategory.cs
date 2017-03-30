@@ -22,7 +22,6 @@ namespace BungBungShop.Model.Models
 
         [MaxLength(500)]
         public string Description { set; get; }
-
         public int? ParentID { set; get; }
         public int? DisplayOrder { set; get; }
 
@@ -32,5 +31,6 @@ namespace BungBungShop.Model.Models
         public bool? HomeFlag { set; get; }
 
         public virtual IEnumerable<Product> Products { set; get; }
+
     }
 }

@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
+using Newtonsoft.Json;
 
 namespace BungBungShop.Web.Api
 {
@@ -60,6 +61,8 @@ namespace BungBungShop.Web.Api
 
             var result = await SignInManager.PasswordSignInAsync(userName, passWord, remember, shouldLockout: false);
             return request.CreateResponse(HttpStatusCode.OK, result);
+
         }
+        
     }
 }

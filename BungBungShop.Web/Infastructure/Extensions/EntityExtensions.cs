@@ -1,9 +1,6 @@
 ﻿using BungBungShop.Model.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using BungBungShop.Web.Models;
+
 namespace BungBungShop.Web.Infastructure.Extensions
 {
     //Tạo ra các phương thức mở rộng cho các class
@@ -27,7 +24,26 @@ namespace BungBungShop.Web.Infastructure.Extensions
             postCategory.MetaKeyword = postCategoryVM.MetaKeyword;
             postCategory.MetaDescription = postCategoryVM.MetaDescription;
             postCategory.Status = postCategoryVM.Status;
+        }
 
+        public static void UpdateProductCategory(this ProductCategory productCategory, ProductCategoryViewModel productCategoryVM)
+        {
+            productCategory.ID = productCategoryVM.ID;
+            productCategory.Name = productCategoryVM.Name;
+            productCategory.Alias = productCategoryVM.Alias;
+            productCategory.Description = productCategoryVM.Description;
+            productCategory.ParentID = productCategoryVM.ParentID;
+            productCategory.DisplayOrder = productCategoryVM.DisplayOrder;
+            productCategory.Image = productCategoryVM.Image;
+            productCategory.HomeFlag = productCategoryVM.HomeFlag;
+
+            productCategory.CreatedDate = productCategoryVM.CreatedDate;
+            productCategory.CreatedBy = productCategoryVM.CreatedBy;
+            productCategory.UpdatedDate = productCategoryVM.UpdatedDate;
+            productCategory.UpdateBy = productCategoryVM.UpdateBy;
+            productCategory.MetaKeyword = productCategoryVM.MetaKeyword;
+            productCategory.MetaDescription = productCategoryVM.MetaDescription;
+            productCategory.Status = productCategoryVM.Status;
         }
 
         public static void UpdatePost(this Post post, PostViewModel postVM)
@@ -50,5 +66,7 @@ namespace BungBungShop.Web.Infastructure.Extensions
             post.MetaDescription = postVM.MetaDescription;
             post.Status = postVM.Status;
         }
+
+
     }
 }

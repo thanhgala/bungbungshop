@@ -15,6 +15,6 @@
             url: "/product_add",
             templateUrl: "/app/components/products/productAddView.html",
             controller: "productAddController"
-        })
+        });
     }
 })();
