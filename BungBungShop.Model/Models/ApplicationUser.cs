@@ -26,5 +26,7 @@ namespace BungBungShop.Model.Models
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
             return userIdentity;
         }
+
+        public virtual IEnumerable<Order> Order { set; get; }
     }
 }

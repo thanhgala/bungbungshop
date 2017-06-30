@@ -9,10 +9,13 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using BungBungShop.Web.Infastructure.Extensions;
+using System.Web.Script.Serialization;
 
 namespace BungBungShop.Web.Api
 {
     [RoutePrefix("api/product")]
+    [Authorize]
     public class ProductController : ApiControllerBase
     {
         #region Initialize
@@ -63,6 +66,118 @@ namespace BungBungShop.Web.Api
 
                 var response = request.CreateResponse(HttpStatusCode.OK, responseData);
 
+                return response;
+            });
+        }
+
+        [Route("getid/{id:int}")]
+        [HttpGet]
+        public HttpResponseMessage GetID(HttpRequestMessage request, int id)
+        {
+            return CreateHttpRespond(request, () =>
+            {
+                var model = _productService.GetByID(id);
+
+                var responseData = Mapper.Map<Product, ProductViewModel>(model);
+
+                return request.CreateResponse(HttpStatusCode.OK, responseData);
+            });
+        }
+
+        [Route("create")]
+        [HttpPost]
+        public HttpResponseMessage Create(HttpRequestMessage request, ProductViewModel productVM)
+        {
+            return CreateHttpRespond(request, () =>
+            {
+                HttpResponseMessage response = null;
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateResponse(HttpStatusCode.BadGateway, ModelState);
+                }
+                var newProduct = new Product();
+                newProduct.UpdateProduct(productVM);
+                newProduct.CreatedDate = DateTime.Now;
+                newProduct.CreatedBy = User.Identity.Name;
+                _productService.Add(newProduct);
+                _productService.Save();
+                var responseData = Mapper.Map<Product, ProductViewModel>(newProduct);
+                response = request.CreateResponse(HttpStatusCode.OK, responseData);
+                return response;
+            });
+        }
+
+        [Route("delete")]
+        [HttpDelete]
+        public HttpResponseMessage Delete(HttpRequestMessage request, int id)
+        {
+            return CreateHttpRespond(request, () =>
+            {
+                 HttpResponseMessage response = null;
+                 if (!ModelState.IsValid)
+                 {
+                     response = request.CreateResponse(HttpStatusCode.BadGateway, ModelState);
+                 }
+
+                 var model = _productService.Delete(id);
+                 _productService.Save();
+
+                 var responseData = Mapper.Map<Product, ProductViewModel>(model);
+                 response = request.CreateResponse(HttpStatusCode.OK, responseData);
+                 return response;
+            });
+        }
+
+        [Route("deletemulti")]
+        [HttpDelete]
+        public HttpResponseMessage DeleteMulti(HttpRequestMessage request, string checkedProduct)
+        {
+            return CreateHttpRespond(request, () =>
+            {
+                HttpResponseMessage response = null;
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var listProduct = new JavaScriptSerializer().Deserialize<List<int>>(checkedProduct);
+
+                    foreach (var item in listProduct)
+                    {
+                        _productService.Delete(item);
+                    }
+                    _productService.Save();
+                    response = request.CreateResponse(HttpStatusCode.OK, listProduct.Count);
+                }
+                return response;
+            });
+        }
+
+        [Route("update")]
+        [HttpPut]
+        public HttpResponseMessage Update(HttpRequestMessage request, ProductViewModel productVM)
+        {
+            return CreateHttpRespond(request, () =>
+            {
+                HttpResponseMessage response = null;
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var dbProduct = new Product();
+                    dbProduct = _productService.GetByID(productVM.ID);
+                    dbProduct.UpdatedDate = DateTime.Now;
+                    dbProduct.UpdateBy = User.Identity.Name;
+                    dbProduct.UpdateProduct(productVM);
+                    _productService.Update(dbProduct);
+                    _productService.Save();
+
+                    var responseData = Mapper.Map<Product, ProductViewModel>(dbProduct);
+                    response = request.CreateResponse(HttpStatusCode.OK, responseData);
+                }
                 return response;
             });
         }

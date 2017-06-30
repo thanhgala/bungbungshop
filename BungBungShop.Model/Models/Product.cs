@@ -1,4 +1,5 @@
 ﻿using BungBungShop.Model.Abstrack;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Linq;
@@ -46,8 +47,12 @@ namespace BungBungShop.Model.Models
         
         public string Tag { set; get; }
 
+        public int Quantity { set; get; }
+
         [ForeignKey("CategoryID")]
         public virtual ProductCategory ProductCategory { set; get; }
+
+        public virtual IEnumerable<ProductTag> ProductTags { set; get; }
 
     }
 }

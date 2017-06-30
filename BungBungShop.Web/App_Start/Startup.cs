@@ -34,12 +34,11 @@ namespace BungBungShop.Web.App_Start
             //cấu hình trong MVC
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
             //cấu hình cho web api
-            //builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
-            builder.RegisterApiControllers(typeof(PostController).Assembly);
+            builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
+            //builder.RegisterApiControllers(typeof(PostController).Assembly);
 
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerRequest();
             builder.RegisterType<DbFactory>().As<IDbFactory>().InstancePerRequest();
-
             builder.RegisterType<BungBungShopDbContext>().AsSelf().InstancePerRequest();
 
             //Asp.net Identity

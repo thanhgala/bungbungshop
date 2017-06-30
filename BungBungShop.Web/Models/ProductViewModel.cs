@@ -5,6 +5,7 @@ using System.Web;
 
 namespace BungBungShop.Web.Models
 {
+    [Serializable]
     public class ProductViewModel
     {
         public int ID { set; get; }
@@ -41,7 +42,7 @@ namespace BungBungShop.Web.Models
 
         public DateTime? UpdatedDate { set; get; }
 
-        public string UpdatedBy { set; get; }
+        public string UpdateBy { set; get; }
 
         public string MetaKeyword { set; get; }
 
@@ -50,6 +51,8 @@ namespace BungBungShop.Web.Models
         public bool Status { set; get; }
 
         public string Tag { set; get; }
+
+        public int Quantity { set; get; }
 
         public virtual ProductCategoryViewModel ProductCategory { set; get; }
     }

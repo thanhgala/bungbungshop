@@ -20,5 +20,8 @@ namespace BungBungShop.Model.Models
         public string Alias { set; get; }
 
         public string Content { set; get; }
+
+        [Required]
+        public bool Status { set; get; }
     }
 }

@@ -1,15 +1,8 @@
-﻿using BungBungShop.Web.Infastructure.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using BungBungShop.Service;
+using BungBungShop.Web.Infastructure.Core;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using BungBungShop.Service;
-using AutoMapper;
-using Newtonsoft.Json.Serialization;
-using Newtonsoft.Json;
-using System.Web.Http.Results;
 
 namespace BungBungShop.Web.Api
 {
@@ -22,6 +15,7 @@ namespace BungBungShop.Web.Api
         {
             this._postService = postService;
         }
+
         [Route("getall")]
         public HttpResponseMessage GetAll(HttpRequestMessage request)
         {

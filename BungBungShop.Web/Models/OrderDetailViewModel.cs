@@ -12,7 +12,5 @@ namespace BungBungShop.Web.Models
         public int ProductID { set; get; }
 
         public int Quantitty { set; get; }
-
-        public virtual OrderViewModel Order { set; get; }
     }
 }
