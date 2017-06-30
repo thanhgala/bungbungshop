@@ -30,8 +30,26 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,13 +58,102 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BungBungShopDbContext.cs" />
+    <Compile Include="Infrastructure\DbFactory.cs" />
+    <Compile Include="Infrastructure\Disposable.cs" />
+    <Compile Include="Infrastructure\IDbFactory.cs" />
+    <Compile Include="Infrastructure\IRepository.cs" />
+    <Compile Include="Infrastructure\IUnitOfWork.cs" />
+    <Compile Include="Infrastructure\RepositoryBase.cs" />
+    <Compile Include="Infrastructure\UnitOfWork.cs" />
+    <Compile Include="Migrations\201703071349179_InitialDB.cs" />
+    <Compile Include="Migrations\201703071349179_InitialDB.Designer.cs">
+      <DependentUpon>201703071349179_InitialDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703091903195_AddErrorTable.cs" />
+    <Compile Include="Migrations\201703091903195_AddErrorTable.Designer.cs">
+      <DependentUpon>201703091903195_AddErrorTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703150931142_Intergrate-AspnetIdentity.cs" />
+    <Compile Include="Migrations\201703150931142_Intergrate-AspnetIdentity.Designer.cs">
+      <DependentUpon>201703150931142_Intergrate-AspnetIdentity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703151824244_ChangeKey.cs" />
+    <Compile Include="Migrations\201703151824244_ChangeKey.Designer.cs">
+      <DependentUpon>201703151824244_ChangeKey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703191633162_updateProductTable.cs" />
+    <Compile Include="Migrations\201703191633162_updateProductTable.Designer.cs">
+      <DependentUpon>201703191633162_updateProductTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703191702221_updateForeignKeyForOrderDetail.cs" />
+    <Compile Include="Migrations\201703191702221_updateForeignKeyForOrderDetail.Designer.cs">
+      <DependentUpon>201703191702221_updateForeignKeyForOrderDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703300753398_UpdateTagColumnInProduct.cs" />
+    <Compile Include="Migrations\201703300753398_UpdateTagColumnInProduct.Designer.cs">
+      <DependentUpon>201703300753398_UpdateTagColumnInProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ErrorRepository.cs" />
+    <Compile Include="Repositories\MenuGroupRepository.cs" />
+    <Compile Include="Repositories\MenuRepository.cs" />
+    <Compile Include="Repositories\OrderDetailRepository.cs" />
+    <Compile Include="Repositories\OrderRepository.cs" />
+    <Compile Include="Repositories\PageRepository.cs" />
+    <Compile Include="Repositories\PostCategoryRepository.cs" />
+    <Compile Include="Repositories\PostRepository.cs" />
+    <Compile Include="Repositories\PostTagRepository.cs" />
+    <Compile Include="Repositories\ProductCategoryRepository.cs" />
+    <Compile Include="Repositories\FooterRepository.cs" />
+    <Compile Include="Repositories\ProductRepository.cs" />
+    <Compile Include="Repositories\ProductTagRepository.cs" />
+    <Compile Include="Repositories\SlideRepository.cs" />
+    <Compile Include="Repositories\SupportOnlineRepository.cs" />
+    <Compile Include="Repositories\SystemConfigRepository.cs" />
+    <Compile Include="Repositories\TagRepository.cs" />
+    <Compile Include="Repositories\VisitorStatisticRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BungBungShop.Common\BungBungShop.Common.csproj">
       <Project>{fae9ab86-b3f9-479b-9c50-9343e648d3c6}</Project>
       <Name>BungBungShop.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BungBungShop.Model\BungBungShop.Model.csproj">
+      <Project>{51e03845-4ee0-4648-9c9e-7113bbd0affd}</Project>
+      <Name>BungBungShop.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201703071349179_InitialDB.resx">
+      <DependentUpon>201703071349179_InitialDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703091903195_AddErrorTable.resx">
+      <DependentUpon>201703091903195_AddErrorTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703150931142_Intergrate-AspnetIdentity.resx">
+      <DependentUpon>201703150931142_Intergrate-AspnetIdentity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703151824244_ChangeKey.resx">
+      <DependentUpon>201703151824244_ChangeKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703191633162_updateProductTable.resx">
+      <DependentUpon>201703191633162_updateProductTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703191702221_updateForeignKeyForOrderDetail.resx">
+      <DependentUpon>201703191702221_updateForeignKeyForOrderDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703300753398_UpdateTagColumnInProduct.resx">
+      <DependentUpon>201703300753398_UpdateTagColumnInProduct.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="System\Collections\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
